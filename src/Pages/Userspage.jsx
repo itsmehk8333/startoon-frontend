@@ -15,9 +15,9 @@ function Userspage() {
 
     <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "80vh" }}>
       <Box>
-        <Card sx={{ minWidth: 305 , padding:"10px"}}>
+        <Card sx={{ minWidth: 305, padding: "10px" }}>
           <CardContent>
-            <Box sx={{ textAlign: "center" , padding:"10px"}}>
+            <Box sx={{ textAlign: "center", padding: "10px" }}>
               <Typography variant='h5'>Profile </Typography>
             </Box>
             <Typography variant="h5" gutterBottom sx={{ color: 'text.secondary', fontSize: 20 }}>

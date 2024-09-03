@@ -39,7 +39,7 @@ function NavbarComponent({ setPageState, pages }) {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" sx={{background:"#0288d1"}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}

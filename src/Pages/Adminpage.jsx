@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import NavbarComponent from '../Components/Navbar/NavbarComponent'
-import { Box } from '@mui/material';
+import { Box, Typography, Grid  } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -54,7 +54,7 @@ function TableComponent() {
         <Box sx={{ padding: "30px 50px" }}>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead sx={{ background: "gray" }}>
+                    <TableHead sx={{ background: "#F4F4F4" }}>
                         <TableRow>
                             <TableCell>S.No </TableCell>
                             <TableCell align="right">Name</TableCell>
@@ -116,35 +116,60 @@ function GraphComponent() {
         fetchUserData();
     }, []);
     return (
-        <Box sx={{ border: "1px solid black , height:100vh", display: "flex", alignItems: "center", justifyContent: "center", marginTop: "20px" }}>
-            <BarChart
-                width={500}
-                height={300}
-                data={userData}
-                margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="_id" >
-                    <Label value="Months" offset={0} position="insideBottomRight" />
-                </XAxis>
-                <YAxis>
-                    <Label value="Count" angle={-90} position="insideLeft" style={{ textAnchor: 'middle' }} />
-                </YAxis>
-                <XAxis dataKey="_id" />
-                <YAxis />
-                <Tooltip />
-                <Bar
-                    dataKey="totalUsers"
-                    fill="#B3CDAD"
-                    activeBar={<Rectangle fill="lightblue" stroke="gray" />}
-                />
-            </BarChart>
-        </Box>
+
+        <Box sx={{ p: 2 }}>
+      {/* Display Total Users and Total Click Count side by side */}
+      <Grid container spacing={2} sx={{ display: 'flex', justifyContent: 'center', mb: 4 }}>
+        <Grid item xs={12} sm={2}>
+          <Box sx={{ border: "1px solid lightgray", textAlign: 'center', p: 2, backgroundColor: "#f4f4f4" }}>
+            <Typography variant="h4" component="div">
+              {userData?.length}
+            </Typography>
+            <Typography variant="body2">
+              Total User Count
+            </Typography>
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={2}>
+          <Box sx={{ border: "1px solid lightgray", textAlign: 'center', p: 2, backgroundColor: "#f4f4f4" }}>
+            <Typography variant="h4" component="div">
+              XX
+            </Typography>
+            <Typography variant="body2">
+              Total Click Count
+            </Typography>
+          </Box>
+        </Grid>
+      </Grid>
+
+      {/* BarChart for displaying data */}
+      <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <BarChart
+          width={500}
+          height={300}
+          data={userData}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="_id" >
+            <Label value="Months" offset={0} position="insideBottomRight" />
+          </XAxis>
+          <YAxis>
+            <Label value="Count" angle={-90} position="insideLeft" style={{ textAnchor: 'middle' }} />
+          </YAxis>
+          <Tooltip />
+          <Bar
+            dataKey="totalUsers"
+            fill="#87CEEB"
+          />
+        </BarChart>
+      </Box>
+    </Box>
     )
 
 }

@@ -22,10 +22,36 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { styled } from '@mui/material/styles';
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
+
+
+
+const CustomTextField = styled(TextField)(({ theme }) => ({
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'gray', // Default border color
+    },
+    '&:hover fieldset': {
+      borderColor: 'gray', // Border color on hover
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: 'blue', // Border color when focused
+    },
+    '&.Mui-error fieldset': {
+      borderColor: 'red', // Border color when there's an error
+    },
+  },
+  '& label.Mui-error': {
+    color: 'red', // Label color when there's an error
+  },
+  '& .MuiFormHelperText-root.Mui-error': {
+    color: 'red', // Helper text color when there's an error
+  },
+}));
 
 export default function SignUp() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -103,7 +129,7 @@ export default function SignUp() {
           <Box width={{ xs: '100%', md: '50%' }} height={{ xs: 'auto', md: '100vh' }} sx={{ display: "flex", alignItems: "center", justifyContent: "center", }}>
             <img src={logo} style={{
               width: '80%',
-              maxWidth: '200px', 
+              maxWidth: '200px',
               height: 'auto',
             }} />
           </Box>
@@ -133,21 +159,48 @@ export default function SignUp() {
                     autoFocus
                     {...register("firstname", { required: true })}
                   // onChange={(e)=>{setFirstName(e.target.value)}}
+
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField
+                  {/* <TextField
                     required
                     fullWidth
                     id="Username"
                     label="Email"
                     name="email"
                     autoComplete="email"
-                    {...register("username", { required: true })}
+                    {...register("username", {
+                      required: true,
+                      pattern: {
+                        value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                        message: 'Enter a valid email',
+                      }
+                    })}
+                    error={!!errors.email}
+                    helperText={errors.email ? errors.email.message : ''}
 
                   // onChange={(e)=>{setEmail(e.target.value)}}
 
+                  /> */}
+
+                  <CustomTextField
+                    fullWidth
+                    id="Username"
+                    label="Email"
+                    name="email"
+                    variant="outlined"
+                    {...register('username', {
+                      required: 'Email is required',
+                      pattern: {
+                        value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                        message: 'Enter a valid email',
+                      },
+                    })}
+                    error={!!errors.email}
+                    helperText={errors.email ? errors.email.message : ''}
                   />
+
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
