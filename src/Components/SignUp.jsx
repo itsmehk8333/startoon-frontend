@@ -54,33 +54,33 @@ export default function SignUp() {
 
     console.log(data)
     setBackdropOn(true)
- 
+
     const userData = {
-      emailId : data.username,
-      password :data.password,
+      emailId: data.username,
+      password: data.password,
       gender: data.gender,
-      name:data.firstname
+      name: data.firstname
     }
-     console.log(userData)
+    console.log(userData)
     instance.post("/auth/signup", JSON.stringify(userData)).then((data) => {
- 
+
       if (data.data.success == true) {
         setAlertOn(true);
         setAlertMessage("User Registration Successfull!!");
         setAlertSeverity("success")
         setTimeout(() => {
-          setBackdropOn(false)    
+          setBackdropOn(false)
           navigate("/login")
-          
+
         }, 1000)
       }
-      else{
-         console.log(78)
+      else {
+        console.log(78)
         setAlertOn(true);
         setAlertMessage(data.data.message);
         setBackdropOn(false);
         setAlertSeverity("error")
-        setTimeout(() =>{
+        setTimeout(() => {
           setAlertOn(false);
         }, 3000)
       }
@@ -91,18 +91,30 @@ export default function SignUp() {
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" sx={{ height: "100vh", }} >
         <CssBaseline />
-        <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center" }}>
-          <Box width={"50%"} height={"100vh"} sx={{ display: "flex", alignItems: "center", justifyContent: "center", }}>
-            <img src={logo} width={"200px"} />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: { xs: 'column', md: 'row' },
+            alignItems: "center",
+            justifyContent: "center",
+            height: '100vh',
+          }}
+        >
+          <Box width={{ xs: '100%', md: '50%' }} height={{ xs: 'auto', md: '100vh' }} sx={{ display: "flex", alignItems: "center", justifyContent: "center", }}>
+            <img src={logo} style={{
+              width: '80%',
+              maxWidth: '200px', 
+              height: 'auto',
+            }} />
           </Box>
           <Box
             sx={{
-              marginTop: 8,
+              marginTop: { xs: 2, md: 8 },
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: "center",
-              width: "50%"
+              width: { xs: '100%', md: '50%' }
             }}
           >
             <Typography component="h1" variant="h5">
@@ -186,7 +198,7 @@ export default function SignUp() {
           </Box>
         </Box>
         <SimpleBackdrop open={backdropOn} close={setBackdropOn} />
-        <AlertComponent open={alertOn} close={setAlertOn} message={alertMessage} severity={alertSeverity}  />
+        <AlertComponent open={alertOn} close={setAlertOn} message={alertMessage} severity={alertSeverity} />
       </Container>
     </ThemeProvider>
   );

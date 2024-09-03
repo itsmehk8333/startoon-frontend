@@ -73,13 +73,17 @@ export default function SignIn() {
     <ThemeProvider theme={defaultTheme}>
       <Container sx={{ height: "100vh", }} >
         <CssBaseline />
-        <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center" }}>
-          <Box width={"50%"} height={"100vh"} sx={{ display: "flex", alignItems: "center", justifyContent: "center", }}>
-            <img src={logo} width={"200px"} />
+        <Box sx={{ display: 'flex', alignItems: "center", justifyContent: "center", flexDirection: { xs: "column", md: "row" } }}>
+          <Box width={{ xs: '100%', md: '50%' }} height={{ xs: 'auto', md: '100vh' }} sx={{ display: "flex", alignItems: "center", justifyContent: "center", }}>
+            <img src={logo} style={{
+              width: '80%',
+              maxWidth: '200px',
+              height: 'auto'
+            }} />
           </Box>
           <Box
             sx={{
-              marginTop: 8,
+              marginTop: { xs: 2, md: 8 },
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
