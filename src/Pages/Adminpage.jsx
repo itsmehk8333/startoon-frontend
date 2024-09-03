@@ -21,13 +21,10 @@ import {
     Label
 } from "recharts";
 function Adminpage() {
-
     const [pageState, setPageState] = useState(1);
-
     return (
         <div>
-            <NavbarComponent  {...{ setPageState }} />
-
+            <NavbarComponent  {...{ setPageState, }} pages={['Home', 'Graph']} />
             {
                 pageState == 1 ? <TableComponent /> : <GraphComponent />
             }
@@ -40,7 +37,6 @@ function Adminpage() {
 function TableComponent() {
 
     const [usersData, setUsersData] = useState([]);
-    console.log(usersData)
 
     useEffect(() => {
 
@@ -79,7 +75,7 @@ function TableComponent() {
                                 <TableCell align="right">{row?.name}</TableCell>
                                 <TableCell align="right">{row?.email_id}</TableCell>
                                 <TableCell align="right">{row?.count}</TableCell>
-                                <TableCell align="right">{row?.last_login_date}</TableCell>
+                                <TableCell align="right">{row?.last_login_date.split("T")[0]}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -91,50 +87,6 @@ function TableComponent() {
 
 }
 
-const data = [
-    {
-        name: "Page A",
-        uv: 4000,
-        pv: 2400,
-
-    },
-    {
-        name: "Page B",
-        uv: 3000,
-        pv: 1398,
-        amt: 2210,
-    },
-    {
-        name: "Page C",
-        uv: 2000,
-        pv: 9800,
-        amt: 2290,
-    },
-    {
-        name: "Page D",
-        uv: 2780,
-        pv: 3908,
-        amt: 2000,
-    },
-    {
-        name: "Page E",
-        uv: 1890,
-        pv: 4800,
-        amt: 2181,
-    },
-    {
-        name: "Page F",
-        uv: 2390,
-        pv: 3800,
-        amt: 2500,
-    },
-    {
-        name: "Page G",
-        uv: 3490,
-        pv: 4300,
-        amt: 2100,
-    },
-];
 function GraphComponent() {
     const [userData, setUserData] = useState([]);
     console.log(userData)
@@ -164,7 +116,7 @@ function GraphComponent() {
         fetchUserData();
     }, []);
     return (
-        <Box sx={{ border: "1px solid black , height:100vh", display: "flex", alignItems: "center", justifyContent: "center" ,marginTop:"20px"}}>
+        <Box sx={{ border: "1px solid black , height:100vh", display: "flex", alignItems: "center", justifyContent: "center", marginTop: "20px" }}>
             <BarChart
                 width={500}
                 height={300}
@@ -177,7 +129,7 @@ function GraphComponent() {
                 }}
             >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="_id">
+                <XAxis dataKey="_id" >
                     <Label value="Months" offset={0} position="insideBottomRight" />
                 </XAxis>
                 <YAxis>

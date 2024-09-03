@@ -10,7 +10,7 @@ function RoutesComponent() {
        <Route path='/dashboard' element={<Homepage />  }></Route>
       <Route path='/login' element={<SignIn />  }></Route>
       <Route path='/register' element={<SignUp />  }></Route>
-      <Route path='*' element={<Navigate  to="/dashboard" replace={true}  />} > </Route>
+      <Route path='*' element={<Navigate  to="/login" replace={true}  />} > </Route>
 
     </Routes>
   )

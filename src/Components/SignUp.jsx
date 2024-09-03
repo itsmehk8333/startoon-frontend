@@ -65,8 +65,8 @@ export default function SignUp() {
     instance.post("/auth/signup", JSON.stringify(userData)).then((data) => {
  
       if (data.data.success == true) {
-         console.log('68')
         setAlertOn(true);
+        setAlertMessage("User Registration Successfull!!");
         setAlertSeverity("success")
         setTimeout(() => {
           setBackdropOn(false)    

@@ -5,19 +5,21 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import NavbarComponent from '../Components/Navbar/NavbarComponent';
 
 
 function Userspage() {
 
-  return (
-    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid black", height: "100vh" }}>
+  return (<>
+    <NavbarComponent pages={[]} />
+
+    <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", height: "80vh" }}>
       <Box>
-        <Card sx={{ minWidth: 275 }}>
+        <Card sx={{ minWidth: 305 , padding:"10px"}}>
           <CardContent>
-            <Box sx={{ textAlign: "center" }}>
+            <Box sx={{ textAlign: "center" , padding:"10px"}}>
               <Typography variant='h5'>Profile </Typography>
             </Box>
-
             <Typography variant="h5" gutterBottom sx={{ color: 'text.secondary', fontSize: 20 }}>
               Name:  <span>{JSON.parse(sessionStorage.getItem("useDetails"))?.name}</span>
             </Typography>
@@ -29,6 +31,7 @@ function Userspage() {
 
       </Box>
     </Box>
+  </>
   )
 }
 
